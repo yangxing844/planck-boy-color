@@ -40,3 +40,24 @@ pwmleds {
 		pwm-led2= &pwm_led2;
 	};
 };
+/ {
+    aliases {
+        led-red = &led0;
+        led-green = &led1;
+        led-blue = &led2;
+    };
+
+    leds {
+        compatible = "gpio-leds";
+        status = "okay";
+        led0: led_0 {
+            gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
+        };
+        led1: led_1 {
+            gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+        };
+        led2: led_2 {
+            gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
+        };
+    };
+};
