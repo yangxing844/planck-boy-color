@@ -40,3 +40,24 @@ pwmleds {
 		pwm-led2= &pwm_led2;
 	};
 };
+/ {
+    aliases {
+        led-red = &led0;
+        led-green = &led1;
+        led-blue = &led2;
+    };
+
+    leds {
+        compatible = "gpio-leds";
+        status = "okay";
+        led0: led_0 {
+            gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;  // red LED, connected to P0.26
+        };
+        led1: led_1 {
+            gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;  // green LED, connected to P0.30
+        };
+        led2: led_2 {
+            gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;  // blue LED, connected to P0.06
+        };
+    };
+};
