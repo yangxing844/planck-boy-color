@@ -14,7 +14,20 @@
 	chosen {
 		zmk,physical-layout = &matrix_physical_layout;
 	};
-	kscan0: kscan {
+  kscan0: kscan_composite {
+		compatible = "zmk,kscan-composite";
+		columns =<50>;
+
+		matrix {
+			kscan = <&kscan1>;
+		};
+		encoder {
+			kscan = <&kscan2>;
+			row-offset=<0>;
+			col-offset=<18>;
+		};
+	};
+	kscan1: kscan {
 		compatible = "zmk,kscan-gpio-direct";
 		wakeup-source;
 		input-gpios
@@ -39,7 +52,14 @@
 			, <&gpio0 29 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)> //2
 			, <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  //7
 			, <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  //10
-            , <&gpio1 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  //15
+				, <&gpio1 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  //15
+		;
+	};
+	kscan2: kscan_encoder {
+		compatible = "zmk,kscan-gpio-direct";
+		wakeup-source;
+		input-gpios
+			=  <&gpio0 31 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  //5
 		;
 	};
 };
